@@ -96,4 +96,10 @@ private:
 	TObjectPtr<UAnimInstance> AnimInstance;
 
 	bool bCanFire = true;
+
+	UFUNCTION(BlueprintCallable, Category = "Trace")
+	void PerformTrace(float Length, float Radius, ECollisionChannel Channel, bool& bHit, FHitResult& Result);
+
+	UPROPERTY(EditDefaultsOnly, Category = "Trace")
+	bool bDrawDebug = true;
 };

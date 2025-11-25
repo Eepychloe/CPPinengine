@@ -33,7 +33,7 @@ public:
 	UPROPERTY(meta=(BindWidget))
 	TObjectPtr<UButtonWidget> PlayButton;
 
-	UPROPERTY(meta=(BindWdiget))
+	UPROPERTY(meta=(BindWidget))
 	TObjectPtr<UButtonWidget> QuitButton;
 
 protected:

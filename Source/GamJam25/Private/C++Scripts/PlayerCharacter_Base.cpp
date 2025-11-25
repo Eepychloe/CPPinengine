@@ -236,6 +236,38 @@ void APlayerCharacter_Base::AttachSpell() //Refactored after binding with invent
 	}
 }
 
+void APlayerCharacter_Base::PerformTrace(float Length, float Radius, ECollisionChannel Channel, bool& bHit,
+	FHitResult& Result)
+{
+	bHit = false;
+	Result = FHitResult();
+
+	FCollisionQueryParams Params;
+	Params.AddIgnoredActor(this);
+
+	const FVector Start = GetActorLocation();
+	const FVector End = Start + (GetActorForwardVector() * Length);
+
+	bHit = GetWorld()->SweepSingleByChannel(Result, Start, End, FQuat::Identity, Channel,
+		FCollisionShape::MakeSphere(Radius), Params);
+	if (bDrawDebug)
+	{
+		DrawDebugLine(GetWorld(), Start, End, FColor::Blue, false, 2.0f, 0, 2.0f);
+
+		DrawDebugSphere(GetWorld(), Start, Radius, 16, FColor::Yellow, false, 2.0f);
+
+		DrawDebugSphere(GetWorld(), End, Radius, 16, FColor::Yellow, false, 2.0f);
+
+		if (bHit)
+		{
+			DrawDebugPoint(GetWorld(), Result.ImpactPoint, 12.0f, FColor::Red, false, 2.0f);
+
+			DrawDebugLine(GetWorld(), Result.ImpactPoint, Result.ImpactPoint + Result.ImpactNormal * 50.0f, FColor::Red,
+				false, 2.0f, 0, 2.0f);
+		}
+	}
+}
+
 void APlayerCharacter_Base::SetOverlappedActor_Implementation(AActor* OverlappedActor)
 {
 	IPlayerCharacterInterface::SetOverlappedActor_Implementation(OverlappedActor);

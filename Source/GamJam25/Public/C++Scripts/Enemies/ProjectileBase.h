@@ -38,6 +38,9 @@ public:
 	UPROPERTY(EditDefaultsOnly, category = "Damage")
 	float BaseDamage = 50.0f;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta=(AllowPrivateAccess = true))
+	FCollisionProfileName CollisionProfile;
+
 	UFUNCTION()
 	void ProjectileHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
 		FVector NormalImpulse, const FHitResult& Hit);

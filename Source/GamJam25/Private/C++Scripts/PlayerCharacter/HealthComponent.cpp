@@ -38,7 +38,7 @@ void UHealthComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 }
 
 void UHealthComponent::OnDamaged(AActor* DamagedActor, float Damage, const class UDamageType* DamageType,
-	class AController* InsigatedBy, AActor* DamageCauser)
+	class AController* InstigatedBy, AActor* DamageCauser)
 {
 	if (CurrentHealth > 0)
 	{
