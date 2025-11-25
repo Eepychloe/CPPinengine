@@ -30,6 +30,11 @@ void APlayerController_Base::BeginPlay()
 		GM->CollectibleRuleComplete.AddUniqueDynamic(this, &APlayerController_Base::GameWin);
 		GM->OnUpdateCollectibles.AddUniqueDynamic(this, &APlayerController_Base::UpdateScore);
 	}
+
+	//Reset to Gameplay input mode from menu UI
+	FInputModeGameOnly GameInputMode;
+	SetInputMode(GameInputMode);
+	bShowMouseCursor = false;
 }
 
 void APlayerController_Base::SetupInputComponent()
